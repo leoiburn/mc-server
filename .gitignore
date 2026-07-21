@@ -1,0 +1,10 @@
+# ---- secrets: NEVER commit these ----
+.env
+
+# ---- runtime data: huge + machine-specific, not source code ----
+data/
+backups/
+
+# ---- editor / OS noise ----
+*.swp
+.DS_Store
