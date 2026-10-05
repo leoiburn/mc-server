@@ -91,3 +91,13 @@ sudo journalctl -u ssh -f          # watch SSH auth attempts
 These techniques are for **your own systems** (or ones you're explicitly
 authorized to test). Same skills, very different legality depending on consent.
 Learn them here, apply them only where you have permission.
+
+## Firewall & IP rate limiting
+`scripts/firewall.sh` sets up the host firewall:
+- **ufw**: deny all inbound, allow Minecraft, rate-limit SSH.
+- **Per-IP limits on Minecraft** (in Docker's `DOCKER-USER` chain, because Docker-published ports skip ufw):
+  max 3 simultaneous connections per IP and 10 new connections per minute per IP (burst 20). Stops connection floods and bot join spam.
+- Tune with env vars: `MC_PORT`, `MAX_CONN_PER_IP`, `NEW_PER_MIN`.
+
+## Port forwarding
+Only TCP 25565 is forwarded from the router to this host. RCON, SSH and Docker are never forwarded.
