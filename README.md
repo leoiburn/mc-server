@@ -1,17 +1,21 @@
-# 🟩 Modded Minecraft Server (Java) — portable & self-hosted
+# 🟩 Modded Minecraft Server
 
-A one-command, mod-loaded Minecraft server you can run on **any Linux machine**
-with Docker. Comes with **automatic backups**, a **password login gate**, and
-**security hardening**. Built to be cloned, understood, and re-run by *you*.
+My own Minecraft server, with mods, that anyone can set up with **one command**.
 
-- **Stack:** Docker + [`itzg/minecraft-server`](https://github.com/itzg/docker-minecraft-server) (the community standard)
-- **Loader:** Fabric (light & fast) — swap to Forge/NeoForge in `docker-compose.yml`
-- **Mods:** a Modrinth modpack URL *or* a hand-picked mod list
-- **Access:** anyone can join, each player sets a password (EasyAuth mod)
-- **Backups:** automatic every 2h, auto-pruned after 7 days
+## What is it?
+- It runs Minecraft inside **Docker**. Docker is like a lunchbox for programs: everything the server needs is packed inside, so it works the same on any Linux computer.
+- **Mods** add new things to the game.
+- **Backups** save a copy of the world every 2 hours, so nothing gets lost.
+- **Passwords**: every player makes a password the first time they join, so nobody can pretend to be them.
 
-> New to the terminal, Docker, or security? Read [`docs/LEARNING.md`](docs/LEARNING.md)
-> and [`SECURITY.md`](SECURITY.md) — they explain the *why* behind every step.
+## How I kept it safe
+- **Port forwarding**: my router only lets in Minecraft traffic (port 25565). Everything else stays closed.
+- **Firewall**: a "guard" that blocks every connection except Minecraft and SSH.
+- **IP rate limiting**: if one computer tries to connect too many times too fast (like a bot attack), it gets blocked for a while. See [`scripts/firewall.sh`](scripts/firewall.sh).
+
+> New to the terminal, Docker, or security? Read [`docs/LEARNING.md`](docs/LEARNING.md) and [`SECURITY.md`](SECURITY.md).
+
+Part of my homelab: [psychos-lab](https://github.com/leoiburn/psychos-lab)
 
 ---
 
